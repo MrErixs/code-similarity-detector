@@ -53,7 +53,33 @@ Normalización:
 - Los valores numéricos se reemplazan por NUMBER.
 - Los operadores y símbolos se conservan tal como aparecen.
 
-# Proximos paos
+### Nota sobre el preprocesamiento
+
+El script preprocessing.py no genera un archivo nuevo por sí solo. Su función principal es leer un archivo de código fuente y convertirlo en una lista de tokens normalizados.
+
+Actualmente, el preprocesamiento se prueba directamente en consola. Por ejemplo, al ejecutar:
+
+python src/preprocessing.py
+
+el script lee un archivo de ejemplo, aplica la tokenización y muestra una salida similar a:
+
+- Cantidad de tokens: 82
+- Primeros 100 tokens:
+
+- ['#', 'INCLUDE', '<', 'ID', '/', 'ID', '+', '+', '.', 'ID', ...]
+
+Esto significa que el código fue leído correctamente y convertido a una representación tokenizada.
+
+Sin embargo, estos tokens no se guardan todavía en un archivo CSV o TXT. El propósito de preprocessing.py es servir como una herramienta auxiliar que será utilizada por los siguientes scripts del proyecto.
+
+Por ejemplo, en el próximo paso, el script de extracción de características podrá usar el preprocesamiento de esta forma:
+
+- path1 → preprocessing.py → tokens del código 1
+- path2 → preprocessing.py → tokens del código 2
+
+Después, esos tokens se usarán para calcular métricas de similitud entre ambos códigos, como Jaccard, Dice o diferencia de longitud.
+
+# Proximos pasos
 Después del preprocesamiento, el siguiente paso será realizar la extracción de características, también conocidas como features. Estas características serán valores numéricos que representen qué tan parecidos son dos códigos después de haber sido convertidos a tokens normalizados.
 
 ### Extracción de features
