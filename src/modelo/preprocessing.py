@@ -1,6 +1,5 @@
 import re
 
-
 # Palabras reservadas principales de C++.
 # Si encontramos una de estas, la conservamos como palabra clave.
 KEYWORDS = {
@@ -46,13 +45,8 @@ def remove_comments(code):
     - comentarios de una línea: // comentario
     - comentarios de varias líneas: /* comentario */
     """
-
-    # Elimina comentarios de una línea.
     code = re.sub(r"//.*", "", code)
-
-    # Elimina comentarios de varias líneas.
     code = re.sub(r"/\*.*?\*/", "", code, flags=re.DOTALL)
-
     return code
 
 
@@ -71,7 +65,7 @@ def tokenize_cpp(code):
     afecten demasiado la comparación.
     """
 
-    # Primero eliminamos comentarios.
+    # Eliminamos comentarios.
     code = remove_comments(code)
 
     # Extraemos tokens usando una expresión regular.
